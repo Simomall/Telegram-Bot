@@ -4,7 +4,7 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Cont
 # --- CONFIGURAZIONE ---
 import os
 # Legge il token e l'username dalle variabili d'ambiente del server
-BOT_TOKEN = os.environ.get("8576710411:AAGHbFb8Y76BLPJ3AGlWoDSrRXH5zw2uo_o")
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
 TUO_USERNAME = os.environ.get("@simomall")
 # --- UTILITY: CREAZIONE LINK DI CONTATTO ---
 

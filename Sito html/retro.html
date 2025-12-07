@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savertech - Retrogaming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>.retro-bg { background: linear-gradient(to right, #240b36, #c31432); }</style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <nav class="bg-white shadow p-4">
+        <div class="max-w-7xl mx-auto">
+            <a href="index.html" class="text-gray-500 hover:text-black">← Torna alla Home</a>
+        </div>
+    </nav>
+
+    <div class="min-h-screen flex flex-col md:flex-row">
+        
+        <div class="md:w-1/2 retro-bg text-white p-12 flex flex-col justify-center items-center text-center">
+            <h1 class="text-5xl font-bold mb-4">Sala Giochi Tascabile</h1>
+            <p class="text-xl opacity-90 mb-8">Emulatori pre-configurati su USB veloce.</p>
+            <div class="text-9xl animate-bounce">👾</div>
+        </div>
+
+        <div class="md:w-1/2 p-12 bg-white flex flex-col justify-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Configura il tuo Kit</h2>
+            
+            <p class="text-gray-600 mb-8">Seleziona quale sistema vuoi pre-installato sulla chiavetta. Ogni kit include l'OS ottimizzato (Batocera/Recalbox) e le configurazioni per il controller.</p>
+
+            <label class="block text-sm font-bold text-gray-700 mb-2">Scegli la Console:</label>
+            <select id="consoleSelector" onchange="aggiornaPrezzo()" class="w-full p-4 border-2 border-gray-300 rounded-lg bg-gray-50 text-lg focus:border-pink-500 focus:outline-none mb-6">
+                <option value="amiga">Amiga 500 (Kickstart Configurato)</option>
+                <option value="c64">Commodore 64</option>
+                <option value="spectrum">ZX Spectrum</option>
+                <option value="allinone">Batocera All-In-One (Misti)</option>
+            </select>
+
+            <div id="descrizioneDinamica" class="bg-pink-50 p-4 rounded-lg mb-8 text-sm text-pink-900">
+                Include configurazione Workbench e Kickstart per Amiga 500. Pronto al gioco.
+            </div>
+
+            <div class="border-t pt-6 flex justify-between items-center">
+                <div>
+                    <span class="text-gray-500 text-sm">Prezzo</span>
+                    <div class="text-3xl font-bold text-gray-900">€24.99</div>
+                </div>
+                <a id="buyButton" href="#" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-bold shadow-lg transition">
+                    Acquista Ora
+                </a>
+            </div>
+            
+            <p class="text-xs text-gray-400 mt-4 text-center">Nessuna ROM illegale inclusa. Solo software di emulazione.</p>
+        </div>
+    </div>
+
+    <script>
+        // CONFIGURA QUI I TUOI LINK STRIPE
+        const links = {
+            'amiga': 'https://buy.stripe.com/LINK_PER_AMIGA',
+            'c64': 'https://buy.stripe.com/LINK_PER_C64',
+            'spectrum': 'https://buy.stripe.com/LINK_PER_SPECTRUM',
+            'allinone': 'https://buy.stripe.com/LINK_PER_ALLINONE'
+        };
+
+        const descrizioni = {
+            'amiga': 'Include configurazione Workbench e Kickstart per Amiga 500. Massima fedeltà.',
+            'c64': 'Il computer più venduto della storia. Include FastLoader per caricamenti istantanei.',
+            'spectrum': 'Emulazione perfetta dello ZX Spectrum 48k/128k. Colori fedeli.',
+            'allinone': 'Il pacchetto completo. Batocera OS con menu grafico per gestire tutte le console.'
+        };
+
+        function aggiornaPrezzo() {
+            const selector = document.getElementById('consoleSelector');
+            const selectedValue = selector.value;
+            const descriptionBox = document.getElementById('descrizioneDinamica');
+            const btn = document.getElementById('buyButton');
+
+            // Aggiorna descrizione
+            descriptionBox.innerText = descrizioni[selectedValue];
+
+            // Aggiorna Link di pagamento
+            btn.href = links[selectedValue];
+        }
+
+        // Avvia la funzione all'apertura per impostare il primo valore
+        aggiornaPrezzo();
+    </script>
+</body>
+</html>
